@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation - Naomi Kombol, Ivan Martinović, Siniša Šegvić, Giorgos Tolias">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="SPAR is an unsupervised training method for distilling sliding-window teacher knowledge into strong resolution-agnostic, single-pass models.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="Open-vocabulary semantic segmentation, CLIP, Vision transformers, Knowledge distillation">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Naomi Kombol, Ivan Martinović, Siniša Šegvić, Giorgos Tolias">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="Faculty of Electrical Engineering and Computing, University of Zagreb & VRG, Faculty of Electrical Engineering, Czech Technical University in Prague">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="SPAR is an unsupervised training method for distilling sliding-window teacher knowledge into resolution-agnostic, single-pass models.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://github.com/naomikombol/SPAR">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://github.com/naomikombol/SPAR/tree/project_page/static/SPAR_method.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation - Research Preview">
+  <meta property="article:published_time" content="TBD">
+  <meta property="article:author" content="Naomi Kombol">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="resolution-agnostic vision transformers">
+  <meta property="article:tag" content="open-vocabulary semantic segmentation">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="SPAR is an unsupervised training method for distilling sliding-window teacher knowledge into resolution-agnostic, single-pass models.">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://github.com/naomikombol/SPAR/tree/project_page/static/SPAR_method.jpg">
+  <meta name="twitter:image:alt" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation">
+  <meta name="citation_author" content="Kombol, Naomi">
+  <meta name="citation_author" content="Martinović, Ivan">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="CVPR">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2604.02252">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation - Naomi Kombol, Ivan Martinović, Siniša Šegvić, Giorgos Tolias | Academic Research</title>
+  
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- TODO: Replace with your paper title -->
+            <h1 class="title is-1 publication-title">SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Replace with your paper authors and their personal links -->
+              <span class="author-block">
+                <a href="https://scholar.google.cat/citations?user=WhsPH0kAAAAJ&hl=en" target="_blank">Naomi Kombol</a><sup>1</sup>,
+              </span>
+
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=sQqOCocAAAAJ&hl=en" target="_blank">Ivan Martinović</a><sup>1</sup>,
+              </span>
+
+              <span class="author-block">
+                <a href="https://www.zemris.fer.hr/~ssegvic/" target="_blank">Siniša Šegvić</a><sup>1</sup>,
+              </span>
+
+              <span class="author-block">
+                <a href="https://cmp.felk.cvut.cz/~toliageo/" target="_blank">Giorgos Tolias</a><sup>2</sup>
+              </span>
+
+            </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>Faculty of Electrical Engineering and Computing, University of Zagreb<br>
+                  <sup>2</sup>VRG, Faculty of Electrical Engineering, Czech Technical University in Prague
+                </span>
+                <br>
+                <b style="color: orange;">CVPR 2026</b>
+              </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- TODO: Update with your arXiv paper ID -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2604.02252" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/naomikombol/SPAR" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2604.02252" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/naomikombol/SPAR#pretrained-models" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-download"></i>
+                  </span>
+                  <span>Models</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+            Foundational Vision Transformers (ViTs) have limited effectiveness in tasks requiring fine-grained spatial understanding, due to their fixed pre-training resolution and inherently coarse patch-level representations. These challenges are especially pronounced in dense prediction scenarios, such as open-vocabulary segmentation with ViT-based vision-language models, where high-resolution inputs are essential for accurate pixel-level reasoning. Existing approaches typically process large-resolution images using a sliding-window strategy at the pre-training resolution. While this improves accuracy through finer strides, it comes at a significant computational cost. We introduce SPAR: Single-Pass Any-Resolution ViT, a resolution-agnostic dense feature extractor designed for efficient high-resolution inference. We distill the spatial reasoning capabilities of a finely-strided, sliding-window teacher into a single-pass student using a feature regression loss, without requiring architectural changes or pixel-level supervision. Applied to open-vocabulary segmentation, SPAR improves single-pass baselines by up to 10.5 mIoU and even surpasses the teacher, demonstrating effectiveness in efficient, high-resolution reasoning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Motivation -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+           <div style="text-align: right;">
+            <div class="image-fade-container">
+              <img src="static/images/main_fig_no_spar_standard.png" class="img-back" />
+              <img src="static/images/main_fig.png" class="img-front" />
+            </div>
+            <div style="font-size: 1rem; color: #666; margin-top: 4px;">
+              *ND denotes strides not divisible by patch size
+            </div>
+          </div>
+          <br>
+          <p>
+          <span style="color: #17588c;"><b>Common practice </b></span>  in semantic segmentation
+          processes images with a <span style="color: #17588c;"><b> sliding window using a stride equal to
+          half the window size </b></span>(e.g., 512 → 256) , 
+          offering a reasonable balance between coverage and efficiency. However, this choice is far from optimal. 
+          <span style="color: #FFEB3B;"><b>Reducing the stride </b></span>significantly improves predictions, as each 
+          region is observed under more diverse 
+          contexts, but <span style="color: #FFEB3B;"><b>finer strides</b></span> rapidly increase computational cost, 
+          exposing a sharp trade-off between accuracy and inference time.
+          </p>
+          <p class="fade-in-question">
+            <b>What if we could get the benefits of extremely fine strides—while keeping inference time nearly unchanged?</b>
+          </p>
+
+          <p class="fade-in-spar">
+          We introduce <span style="color: #F44336;"><b>SPAR: Single-Pass Any-Resolution ViT </b></span>,
+          a resolution-agnostic dense feature extractor for efficient high-resolution inference. 
+          We distill knowledge from fine-strided teachers into a <span style="color: #F44336;"><b>single-pass model</b></span>
+          that outperforms them while maintaining efficiency.
+          </p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Motivation -->
+
+
+
+<!-- Method -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+           <img src="static/images/SPAR_method.jpg" alt="SPAR Method" loading="lazy"/>
+          <p>
+            The <b>SPAR</b> framework consists of a teacher-student distillation setup for efficient high-resolution feature extraction.  
+            During training, the teacher branch uses a frozen foundational vision encoder to produce feature maps via a 
+            fine-strided sliding-window process, allowing it to observe images in their <b>native resolutions and aspect ratios</b>.  
+            These extracted window-level features are stitched into a unified representation aligned with the original image layout.  
+            The student branch, initialized from the same pre-trained weights, learns to match the teacher's 
+            outputs while operating in a single-pass setting on the same input image.  
+            Consequently, <b>SPAR requires no labeled data</b>, as supervision is achieved through <b>feature-level alignment</b>,
+            and <b>no additional architectural changes</b>.  
+            At inference time, the resulting model enables fast and accurate segmentation across diverse
+            resolutions and aspect ratios using only one forward pass.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Method -->
+
+
+<!-- Quantitative  -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+           <img src="static/images/results.png" alt="SPAR Results" loading="lazy"/>
+           <p>
+              <b>Compatibility with multiple strong vision backbones</b>, including MaskCLIP, SigLIP2, and DINOv3.txt, 
+              highlights broad applicability across modern foundation models, demonstrating strong 
+              generalization across different vision transformer backbone sizes, pretraining objectives, and architectures.
+            </p>
+            
+            <p>
+              SPAR <b>delivers consistent improvements</b> across all evaluated backbones and benchmarks, 
+              <b>significantly outperforming pretrained single-pass baselines </b> and even <b>surpassing the teacher models</b>,
+              all while efficiently processing images across diverse resolutions with aspect ratios preserved.
+            </p>
+
+            <p>
+            <b>Positive integration with existing approaches</b> such as LPOSS, 
+            which refines segmentation predictions via training-free label propagation, and AnyUp, 
+            which enhances output resolution through learned upsampling, highlights 
+            complementarity with other segmentation and refinement methods.
+            </p>
+
+            <img src="static/images/resolution_agnosticism.png" alt="SPAR Results" loading="lazy"/>
+
+            <p>
+                SPAR demonstratively <b>improves performance across a range of resolutions</b> when trained
+                in the standard lightweight manner of updating only the last two layers. 
+                <b>Training the full network</b>, denoted by SPAR ALL, further strengthens this behavior, resulting in
+                <b>performance closely aligned with the teacher across resolutions</b>, including those beyond the training 
+                distribution that utilized images with area up to approximately 1.5k² pixels. 
+                Increasing the maximum shorter side from 2048 to 2560 during fine-tuning provides 
+                additional gains, with the <b>enhanced variant</b>, indicated by †, achieving even stronger 
+                performance and consistently <b>surpassing the teacher across resolutions</b>.
+              </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper Quantitative -->
+
+
+
+<!-- Visualization -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visualization</h2>
+        <div class="content has-text-justified">
+         
+<div class="bal-grid-head">
+  <div class="bal-grid-head-item">Segmentation Maps</div>
+  <div class="bal-grid-head-item">PCA</div>
+</div>
+<div class="bal-grid">
+  <div class="bal-container-small" style="--bal-ratio: 768 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/spar__cfg_voc21_65_siglip_whole.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/teacher24__cfg_voc21_65_siglip.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  <div class="bal-container-small" style="--bal-ratio: 768 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/cfg_voc21_pca_65_siglip_whole.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/cfg_voc21_pca_65_siglip.png" loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  <div class="bal-container-small" style="--bal-ratio: 682 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/Student_cfg_ade20k_33_siglip_whole.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/Teacher_cfg_ade20k_33_siglip.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  <div class="bal-container-small" style="--bal-ratio: 682 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/Student_pca_cfg_ade20k_33_siglip_whole.png" loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/Teacher_pca_cfg_ade20k_33_siglip.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  <div class="bal-container-small" style="--bal-ratio: 1024 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/Student_cfg_city_scapes_19_siglip_whole.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/Teacher_cfg_city_scapes_19_siglip.png" loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  <div class="bal-container-small" style="--bal-ratio: 1024 / 512;" data-start="50">
+    <div class="bal-after">
+      <img src="static/images/visualizations/Student_pca_cfg_city_scapes_19_siglip_whole.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-before">
+      <img src="static/images/visualizations/Teacher_pca_cfg_city_scapes_19_siglip.png"  loading="lazy" draggable="false">
+    </div>
+    <div class="bal-handle"></div>
+    <div class="bal-label bal-label-left">Teacher</div>
+    <div class="bal-label bal-label-right">SPAR</div>
+  </div>
+
+  
+</div>
+
+<div class="content has-text-justified">
+          <p>
+            <br>
+            Semantic map and PCA visualizations reveal SPAR <b>improves spatial smoothness</b> and 
+            <b>semantic coherence</b>, producing <b>cleaner boundaries</b> and more differentiated region consistency even over the teacher. 
+          </p>
+        </div>
+</section>
+<!-- End Visualization -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{kombol2026spar,
+        title={SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation},
+        author={Kombol, Naomi and Martinovi{\'c}, Ivan and {\v{S}}egvi{\'c}, Sini{\v{s}}a and Tolias, Giorgos},
+        journal={arXiv preprint arXiv:2604.02252},
+        year={2026},
+        note={Accepted to CVPR 2026}
+      }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
