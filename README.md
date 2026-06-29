@@ -5,8 +5,10 @@ This repository contains the official code for the paper Naomi Kombol, Ivan Mart
 In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026.  
 
 <div align="center">
-    
-[![arXiv](https://img.shields.io/badge/arXiv-2503.19777-b31b1b.svg)](https://arxiv.org/abs/2604.02252) 
+
+[![arXiv](https://img.shields.io/badge/arXiv-2503.19777-b31b1b.svg)](https://arxiv.org/abs/2604.02252)
+[![Project Page](https://img.shields.io/badge/Project_Page-SPAR-blue)](https://naomikombol.github.io/SPAR/)
+[![CVPR 2026](https://img.shields.io/badge/CVPR_2026-Paper-green)](https://openaccess.thecvf.com/content/CVPR2026/html/Kombol_SPAR_Single-Pass_Any-Resolution_ViT_for_Open-vocabulary_Segmentation_CVPR_2026_paper.html)
 
 </div>
 
