@@ -151,6 +151,14 @@ Checkpoint evaluation is done with:
 python eval.py -model DOWNLOADED_MODEL_TYPE -dataset cfg_DATASET -checkpoint PATH_TO_DOWNLOADED_WEIGHTS
 ```
 
+## Inference Demo
+
+We provide `inference_demo.py` for running SPAR models on a single image for quick qualitative evaluation. It outputs a colorized segmentation map with class predictions overlaid on the original image. We provide a Cityscapes validation image for convenience.
+
+```bash
+python inference_demo.py -model MODEL_NAME -checkpoint PATH_TO_CHECKPOINT
+```
+
 ## Citation
 
 ```
