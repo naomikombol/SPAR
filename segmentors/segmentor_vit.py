@@ -151,7 +151,7 @@ class VitForSegmentation(BaseSegmentor):
 
         return image_features
         
-    def forward_slide(self, img,  original_size = None):
+    def forward_slide(self, img, original_size = None):
         """Inference by sliding-window with overlap.
         If h_crop > h_img or w_crop > w_img, the small patch will be used to
         decode without padding.
@@ -216,13 +216,16 @@ class VitForSegmentation(BaseSegmentor):
                     pad_shape=data["inputs"].shape[2:],
                     padding_size=[0, 0, 0, 0])
             ] * data["inputs"].shape[0]
-        
+
         if self.slide_stride > 0:
             seg_logits = self.forward_slide(data["inputs"], batch_img_metas[0]["ori_shape"]) 
         else:
             seg_logits = self.forward_feature(data["inputs"], batch_img_metas[0]["ori_shape"])
 
-        return self.postprocess_result(seg_logits, data["data_samples"])
+        if data["data_samples"] is None:
+            return self.postprocess_result(seg_logits, batch_img_metas)
+        else:
+            return self.postprocess_result(seg_logits, data["data_samples"])
     
     def postprocess_result(self, seg_logits, data_samples):
         batch_size = seg_logits.shape[0]
@@ -249,12 +252,15 @@ class VitForSegmentation(BaseSegmentor):
             
             seg_pred[seg_logits.max(0, keepdim=True)[0] < self.prob_thd] = 0
 
-            data_samples[i].set_data({
-                'seg_logits':
-                PixelData(**{'data': seg_logits}),
-                'pred_sem_seg':
-                PixelData(**{'data': seg_pred})
-            })
+            if isinstance(data_samples[i], dict):
+                data_samples[i]['seg_logits'] = {'data': seg_logits[i]}
+                data_samples[i]['pred_sem_seg'] = {'data': seg_pred[i]}
+
+            else:
+                data_samples[i].set_data({
+                    'seg_logits': PixelData(data=seg_logits[i]),
+                    'pred_sem_seg': PixelData(data=seg_pred[i])
+                })
 
         return data_samples
     
