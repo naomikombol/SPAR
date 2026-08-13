@@ -1,11 +1,9 @@
 import argparse
-from io import BytesIO
 import tempfile
 
-import requests
 import torch
 import torchvision
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -45,7 +43,7 @@ cfg = Config.fromfile(cfg_path)
 image = Image.open("/home/nkombol/SPAR/frankfurt_000000_000294_leftImg8bit.png").convert("RGB")
 
 image = torchvision.transforms.functional.to_tensor(image)*255  # RGB, CHW, float32
-image = image[[2, 1, 0]]   # RGB → BGR - quirk of processing pipeline, expects images in BGR
+image = image[[2, 1, 0]]   # RGB → BGR - quirk of mmseg processing pipeline, expects images in BGR, returns them in RGB
 
 classes = ["background", "building", "car", "road", "sidewalk", "tree", "sky"]
 
