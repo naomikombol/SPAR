@@ -142,7 +142,7 @@ The above SPAR MaskCLIP model uses an updated preprocessing configuration, while
     <td>ViT-B</td>
     <td>SA-1B (25K images)</td>
     <td><a href="https://drive.google.com/file/d/11MABz9Dr3ZI7pzP6p-khQf69Wk43NDne/view?usp=sharing">link</a></td>
-    <td>Paper weigths trained with legacy preprocessing</td>
+    <td>Paper weights trained with legacy preprocessing</td>
   </tr>
 </table>
 
@@ -151,23 +151,35 @@ Checkpoint evaluation is done with:
 python eval.py -model DOWNLOADED_MODEL_TYPE -dataset cfg_DATASET -checkpoint PATH_TO_DOWNLOADED_WEIGHTS
 ```
 
-## Inference Demo
+## Demos
 
+
+### Inference
 We provide `inference_demo.py` for running SPAR models on a single image for quick qualitative evaluation. It outputs a colorized segmentation map with class predictions overlaid on the original image. We provide a Cityscapes validation image for convenience.
 
 ```bash
 python inference_demo.py -model MODEL_NAME -checkpoint PATH_TO_CHECKPOINT
 ```
 
+
+### Embedding Extraction
+We also provide `embeddings_extraction_demo.py` for extracting embeddings from a single image using a SPAR model. The embeddings are saved as a `.pkl` file for convenience and are "as is" from the underlying network: **not normalized or interpolated**.
+
+```bash
+python embeddings_extraction_demo.py -model MODEL_NAME -checkpoint PATH_TO_CHECKPOINT
+```
+
+
 ## Citation
 
 ```
-@article{kombol2026spar,
-  title={SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation},
-  author={Kombol, Naomi and Martinovi{\'c}, Ivan and {\v{S}}egvi{\'c}, Sini{\v{s}}a and Tolias, Giorgos},
-  journal={arXiv preprint arXiv:2604.02252},
-  year={2026},
-  note={Accepted to CVPR 2026}
+@InProceedings{Kombol_2026_CVPR,
+    author    = {Kombol, Naomi and Martinovi\'c, Ivan and \v{S}egvi\'c, Sini\v{s}a and Tolias, Giorgos},
+    title     = {SPAR: Single-Pass Any-Resolution ViT for Open-vocabulary Segmentation},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2026},
+    pages     = {27579-27589}
 }
 ```
 
